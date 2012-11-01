@@ -228,7 +228,7 @@ ERROR
 
     FileUtils.mkdir_p(slug_vendor_ruby)
     Dir.chdir(slug_vendor_ruby) do
-      run("curl #{VENDOR_URL}/#{ruby_version}.tgz -s -o - | tar zxf -")
+      run("curl #{RUBY_VENDOR_URL}/#{ruby_version}.tgz -s -o - | tar zxf -")
     end
     error invalid_ruby_version_message unless $?.success?
 

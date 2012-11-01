@@ -8,6 +8,7 @@ Encoding.default_external = Encoding::UTF_8 if defined?(Encoding)
 # abstract class that all the Ruby based Language Packs inherit from
 class LanguagePack::Base
   VENDOR_URL = "https://s3.amazonaws.com/heroku-buildpack-ruby"
+  RUBY_VENDOR_URL = "https://s3.amazonaws.com/chloeandisabel-buildpack-ruby"
 
   attr_reader :build_path, :cache_path
 
