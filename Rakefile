@@ -1,7 +1,7 @@
 require "fileutils"
 require "tmpdir"
 
-S3_BUCKET_NAME  = "heroku-buildpack-ruby"
+S3_BUCKET_NAME  = "chloeandisabel-buildpack-ruby"
 VENDOR_URL      = "https://s3.amazonaws.com/#{S3_BUCKET_NAME}"
 
 def s3_tools_dir
@@ -57,6 +57,7 @@ def build_ruby_command(name, output, prefix, usr_dir, tmpdir, rubygems = nil)
   build_command = [
     # need to move libyaml/libffi to dirs we can see
     "mv #{usr_dir} /tmp",
+    "curl https://raw.github.com/gist/2593385/perf_and_gc.diff | patch -p1",
     "./configure --enable-load-relative --disable-install-doc --prefix #{prefix}",
     "env CPATH=/tmp/#{usr_dir}/include:\\$CPATH CPPATH=/tmp/#{usr_dir}/include:\\$CPPATH LIBRARY_PATH=/tmp/#{usr_dir}/lib:\\$LIBRARY_PATH make",
     "make install"
